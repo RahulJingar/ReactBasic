@@ -12,13 +12,13 @@ const App = () => {
     }
   )
 
-  const [textColor, serTextColor] = useState('black')
+  const [textColor, setTextColor] = useState('black')
 
   const [grid, setGrid] = useState(true);
 
   const updateTheme = (bgColor, textColor) => {
     setCardStyle({...cardStyle, backgroundColor:bgColor})
-    serTextColor(textColor)
+    setTextColor(textColor)
   }
 
   return (
@@ -74,7 +74,7 @@ const App = () => {
         <img src="https://img.freepik.com/premium-vector/old-gentleman_24908-26037.jpg" alt="" width='200px'/>
         <div style={{ color:textColor}}>
           <h3
-        style={{marginLeft:'50px'}}
+        style={{color:textColor}}
         >Rahul Jingar</h3>
 
         <p style={{marginLeft:'20px'}}><b>Full Stack Developer</b></p>
