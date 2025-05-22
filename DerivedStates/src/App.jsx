@@ -13,7 +13,7 @@ const App = () => {
 
   const total = users.length;
   const last = users.length;
-  const unique = ([...new Set(users,user)]).length
+  const unique = ([...new Set(users)]).length;
 
   return (
     <div style={{
