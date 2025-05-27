@@ -32,7 +32,7 @@ const App =() => {
 
 
         <input 
-        type="text" 
+        type="password" 
         placeholder="Enter Password"
         name="password"
         style={{height:'25px',width:'200px'}}
