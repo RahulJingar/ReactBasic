@@ -8,7 +8,8 @@ const App = () => {
   return (
     <div>
     <UserForm/>
-    <hr />
+    <hr style={{width:'1530px'}} />
+    <br /><br />
     <UserForm/>
   
     </div>
@@ -19,7 +20,7 @@ const App = () => {
 const UserForm = () => {
   const user = useId();
   return (
-    <div>
+    <div style={{marginLeft:'550px'}}>
      <form action="">
       <label htmlFor={user + 'name'}>Enter User Name</label>
       <input 
