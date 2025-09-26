@@ -1,0 +1,68 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const App = () => {
+  const [user, setUser] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [toggle, setToggle] = useState(false); 
+
+  const fetchData = async () => {
+    const axiosData = await axios.get(`https://fakestoreapi.com/products`);
+    setUser(axiosData.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const cartHandle = (item) => {
+    const exist = cart.find((p) => p.id === item.id);
+
+    if (!exist) {
+      setCart([...cart, item]);
+    } else {
+      setCart(cart.filter((p) => p.id !== item.id));
+    }
+  };
+
+  return (
+    <div>
+      <h1>Products</h1>
+
+      <button
+        onClick={() => setToggle(!toggle)}
+      >
+        {`Cart: ${cart.length}`}
+      </button>
+
+      {toggle
+        ? (
+          user.map((item) => (
+            <div>
+              <h3>{`Title: ${item.title}`}</h3>
+              <p>{`Price: ${item.price}`}</p>
+              <img src={item.image} width={100}/>
+              <p>{`Description: ${item.description}`}</p>
+              <p>{`Category: ${item.category}`}</p>
+              <button onClick={() => cartHandle(item)}>
+                {cart.find((p) => p.id === item.id) ? "Remove From Cart" : "Add To Cart"}
+              </button>
+            </div>
+          ))
+        ) : (
+          cart.length === 0
+            ? <p>No items in cart.</p>
+            : cart.map((pro) => (
+                <div>
+                  <h3>{pro.title}</h3>
+                  <p>{`Price: ${pro.price}`}</p>
+                  <img src={pro.image} width={50} />
+                </div>
+              ))
+        )
+      }
+    </div>
+  );
+};
+
+export default App;
